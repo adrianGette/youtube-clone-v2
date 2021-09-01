@@ -5,13 +5,15 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import HomeScreen from './screens/homeScreen/HomeScreen'
 
+import './_app.scss'
+
 const App = () => {
     return (
         <>
             <Header />
-            <div className="app-container">
+            <div className="app__container border border-info">
                 <Sidebar />
-                <Container fluid className="app-main">
+                <Container fluid className="app__main border border-warning">
                     <HomeScreen />
                 </Container>
             </div>
