@@ -9,7 +9,7 @@ import {
     MdHistory,
     MdLibraryBooks,
     MdHome,
-    MdSentimentDissatisfied
+    // MdSentimentDissatisfied
 } from 'react-icons/md'
 
 const Sidebar = ({ sidebar, handleToggleSidebar }) => {
