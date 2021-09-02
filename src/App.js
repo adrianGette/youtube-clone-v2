@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 
 import Header from './components/header/Header'
@@ -6,9 +6,10 @@ import Sidebar from './components/sidebar/Sidebar'
 import HomeScreen from './screens/homeScreen/HomeScreen'
 import LoginScreen from './screens/loginScreen/LoginScreen'
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
 
 import './_app.scss'
+import { useSelector } from 'react-redux'
 
 const Layout = ({ children }) => {
 
@@ -31,10 +32,19 @@ const Layout = ({ children }) => {
 
 const App = () => {
 
+    const { accessToken, loading } = useSelector(state => state.auth);
+
+    const history = useHistory();
+
+    useEffect(()=> {
+        if(!loading && !accessToken) {
+            history.push("/auth")
+        }
+    }, [accessToken, loading, history]);
+
     return (
-        <Router>
             <Switch>
-            
+
                 <Route path="/" exact>
                     <Layout>
                         <HomeScreen />
@@ -56,7 +66,6 @@ const App = () => {
                 </Route>
 
             </Switch>
-        </Router>
     )
 }
 
