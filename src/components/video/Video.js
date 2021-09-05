@@ -3,7 +3,7 @@ import './_video.scss'
 
 import { AiFillEye } from 'react-icons/ai'
 
-const Video = () => {
+const Video = ({video}) => {
     return (
         <div className="video">
             <div className="video__top">
