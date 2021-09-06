@@ -1,4 +1,4 @@
-@import "../../base";
+@import "../../base.scss";
 
 .video {
   margin-bottom: 1rem;
@@ -11,12 +11,14 @@
 
   &__top {
     margin-bottom: 0.5rem;
-
+    position: relative;
+    .lazy-load-image-background {
+      width: 100%;
+    }
     img {
       width: 100%;
     }
-
-    span {
+    &__duration {
       position: absolute;
 
       bottom: 0.3rem;
@@ -32,7 +34,6 @@
     margin-bottom: 0.1rem;
 
     color: #fff;
-
     @include line-clamp(1);
   }
 
@@ -40,7 +41,6 @@
     display: flex;
     align-items: center;
   }
-
   &__channel {
     display: flex;
     align-items: center;
@@ -54,7 +54,6 @@
       margin-right: 0.5rem;
       cursor: pointer;
     }
-
     p {
       margin-bottom: 0;
     }
