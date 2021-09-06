@@ -7,6 +7,8 @@ import CategoriesBar from '../../components/categoriesBar/CategoriesBar'
 import Video from '../../components/video/Video'
 import { getPopularVideos } from '../../redux/actions/videos.action'
 
+import InfiniteScroll from 'react-infinite-scroll-component'
+
 const HomeScreen = () => {
 
     const dispatch = useDispatch();
@@ -17,18 +19,29 @@ const HomeScreen = () => {
 
     const { videos } = useSelector(state => state.homeVideos);
 
+    const fetchData = () => {
+        // logic
+    }
+
     return (
         <Container>
             <CategoriesBar />
-            <Row>
-
-                { videos.map( (video) =>
-                    <Col lg={3} md={4} key={video.id}>
-                        <Video video={video} />
-                    </Col>
-                ) }
-
-            </Row>
+           
+                <InfiniteScroll
+                    dataLength={videos.length}
+                    next={fetchData}
+                    hasMore={true}
+                    loader={
+                        <div className="spinner-border text-danger d-block mx-auto"></div>
+                    }
+                className="row">
+                    { videos.map( video => (
+                        <Col lg={3} md={4} key={video.id}>
+                            <Video video={video} />
+                        </Col>
+                    ) )}
+                </InfiniteScroll>
+          
         </Container>
     )
 }
