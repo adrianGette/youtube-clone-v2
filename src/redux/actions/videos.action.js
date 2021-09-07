@@ -6,7 +6,7 @@ import {
 
 import request from '../../api'
 
-export const getPopularVideos = () => async dispatch => {
+export const getPopularVideos = () => async (dispatch, getState) => {
 
     try {
 
@@ -20,7 +20,7 @@ export const getPopularVideos = () => async dispatch => {
                 chart: 'mostPopular',
                 regionCode: 'AR',
                 maxResults: 20,
-                pageToken: '',
+                pageToken: getState().homeVideos.nextPageToken,
             },
         })
 
